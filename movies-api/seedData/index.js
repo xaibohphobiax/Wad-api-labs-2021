@@ -3,6 +3,8 @@ import genreModel from '../api/genres/genreModel';
 import dotenv from 'dotenv';
 import users from './users';
 import genres from './genres';
+import movieModel from '../api/movies/movieModel';
+import movies from './movies.js';
 
 
 
@@ -17,7 +19,7 @@ async function loadUsers() {
     console.info(`${users.length} users were successfully stored.`);
   } catch (err) {
     console.error(`failed to Load user Data: ${err}`);
-  }
+    }
 }
 
 async function loadGenres() {
@@ -28,11 +30,25 @@ async function loadGenres() {
       console.info(`${genres.length} genres were successfully stored.`);
     } catch (err) {
       console.error(`failed to Load Genres: ${err}`);
-    }
+      }
+}
+
+// deletes all movies documents in collection and inserts test data
+export async function loadMovies() {
+  console.log('load seed data');
+  console.log(movies.length);
+  try {
+    await movieModel.deleteMany();
+    await movieModel.collection.insertMany(movies);
+    console.info(`${movies.length} Movies were successfully stored.`);
+  } catch (err) {
+    console.error(`failed to Load movie Data: ${err}`);
   }
+}
 
 // eslint-disable-next-line no-undef
 if (process.env.SEED_DB) {
   loadUsers();
   loadGenres();
+  loadMovies();
 }
