@@ -2,11 +2,10 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
 
 const Schema = mongoose.Schema;
-
-
+//let regEx = "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$";
 const UserSchema = new Schema({
   username: { type: String, unique: true, required: true},
-  password: {type: String, required: true },
+  password: {type: String, validate: { validator: function(password) { return /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/.test(password); }, message: "Password must be at least 5 characters long and contain at least one number and one letter!"}, required: true },
   favourites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Movies'}]
 });
 
