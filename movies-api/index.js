@@ -28,7 +28,7 @@ const port = process.env.PORT;
 app.use(passport.initialize());
 
 app.use(express.json());
-app.use('/api/people', peopleRouter);
+app.use('/api/people', passport.authenticate('jwt', {session: false}), peopleRouter);
 app.use('/api/movies', passport.authenticate('jwt', {session: false}), moviesRouter);
 app.use('/api/genres', genresRouter);
 app.use('/api/users', usersRouter);
