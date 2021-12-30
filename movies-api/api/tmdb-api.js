@@ -34,17 +34,34 @@ export const getTrendingMovies = () => {
   };
 
 
-  export const getPopularMovies = () => {
-    return fetch(
-      // eslint-disable-next-line no-undef
-      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_KEY}&language=en-US&page=3`
-    ).then((response) => {
-        if (!response.ok) {
-          throw new Error(response.json().message);
-        }
-        return response.json();
-      })
-      .catch((error) => {
-        throw error;
-      });
-  };
+export const getPopularMovies = () => {
+  return fetch(
+    // eslint-disable-next-line no-undef
+    `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_KEY}&language=en-US&page=3`
+  ).then((response) => {
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      return response.json();
+  })
+    .catch((error) => {
+      throw error;
+    });
+};
+
+
+export const getPeople = () => {
+  return fetch(
+    // eslint-disable-next-line no-undef
+    `https://api.themoviedb.org/3/person/popular?api_key=${process.env.TMDB_KEY}&language=en-US&page=1&sort_by=popularity.desc`
+  ).then((response) => {
+    if (!response.ok) {
+      console.log(response);
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  })
+  .catch((error) => {
+    throw error;
+ });
+};
