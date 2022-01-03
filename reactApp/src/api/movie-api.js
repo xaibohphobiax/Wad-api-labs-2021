@@ -28,11 +28,11 @@ export const getMovies = () => {
   };
 
 
-/*export const getPeople = () => {
+export const getPeople = () => {
     return fetch(
         '/api/people', {headers: {
          'Authorization': window.localStorage.getItem('token')
       }
     }
     )
-*/
+};

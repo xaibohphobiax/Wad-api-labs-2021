@@ -54,7 +54,6 @@ router.get('/:id/reviews', (req, res) => {
 //Post a movie review
 router.post('/:id/reviews', (req, res) => {
     const id = parseInt(req.params.id);
-
     if (movieReviews.id == id) {
         req.body.created_at = new Date();
         req.body.updated_at = new Date();

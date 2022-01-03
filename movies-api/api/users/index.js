@@ -61,7 +61,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-//Add a favourite. No Error Handling Yet. Can add duplicates too!
+//Add a favourite
 router.post('/:userName/favourites', asyncHandler(async (req, res) => {
   const newFavourite = req.body.id;
   const userName = req.params.userName;
